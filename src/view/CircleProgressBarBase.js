@@ -3,17 +3,16 @@ import { string, number, bool } from 'prop-types';
 
 const INITIAL_OFFSET = 25;
 const circleConfig = {
-  viewBox: '0 0 38 38',
-  x: '19',
-  y: '19',
-  radio: '15.91549430918954'
+  viewBox: '0 0 100 100',
+  x: '50',
+  y: '50',
+  radio: '15'  // radius 
 };
 
 const CircleProgressBarBase = ({
   className,
   strokeColor,
   strokeWidth,
-  innerText,
   legendText,
   percentage,
   trailStrokeWidth,
@@ -23,6 +22,8 @@ const CircleProgressBarBase = ({
 }) => {
   const [progressBar, setProgressBar] = useState(0);
   const pace = percentage / speed;
+
+  // function to update the percentage
   const updatePercentage = () => {
     setTimeout(() => {
       setProgressBar(progressBar + 1);
@@ -63,14 +64,14 @@ const CircleProgressBarBase = ({
           strokeDashoffset={INITIAL_OFFSET}
         />
 
-        <g className="chart-text">
+        {/* <g className="chart-text">
           <text x="50%" y="50%" className="chart-number">
             {progressBar}%
           </text>
           <text x="50%" y="50%" className="chart-label">
             {innerText}
           </text>
-        </g>
+        </g> */}
       </svg>
       {legendText && (
         <figcaption className="figure-key">
@@ -94,7 +95,6 @@ CircleProgressBarBase.propTypes = {
   className: string.isRequired,
   strokeColor: string,
   strokeWidth: number,
-  innerText: string,
   legendText: string,
   percentage: number,
   trailStrokeWidth: number,
@@ -106,7 +106,6 @@ CircleProgressBarBase.propTypes = {
 CircleProgressBarBase.defaultProps = {
   strokeColor: 'blueviolet',
   strokeWidth: 1,
-  innerText: 'Completed',
   legendText: '',
   percentage: 0,
   trailStrokeWidth: 1,

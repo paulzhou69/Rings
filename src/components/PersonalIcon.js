@@ -20,10 +20,11 @@ class PersonalIcon extends Component {
 
 	/**
 	 * convert unixtime to hours elapsed from Jan 1, 1970
+	 * @param {number} unixtime
 	 */
-	unixToHour(unixtime) {
+	unixToDay(unixtime) {
 		//unix time is in milliseconds 
-		return Math.floor(unixtime / 1000 / 60 / 60);
+		return Math.floor(unixtime / 1000 / 60 / 60 / 24);
 	}
 
 	state = {
@@ -33,16 +34,16 @@ class PersonalIcon extends Component {
 				circle: "csci0320",
 				rings: [
 					{
-						"name": "homework",
-						"color": "red",
-						"startDate": 1611427494628, //TODO: 
-						"endDate": 1611427494628,
+						name: "homework",
+						color: "red",
+						startDate: "2021/01/19",
+						endDate: "2021/01/25",
 					},
 					{
-						"name": "project",
-						"color": "green",
-						"startDate": 1611427494628,
-						"endDate": 1611427494628,
+						name: "project",
+						color: "green",
+						startDate: "2021/01/18",
+						endDate: "2021/01/24",
 					}
 				] 
 			}, 
@@ -51,16 +52,16 @@ class PersonalIcon extends Component {
 				circle: "apma1200",
 				rings: [
 					{
-						"name": "homework",
-						"color": "red",
-						"startDate": 1611427494628,
-						"endDate": 1611427494628,
+						name: "homework",
+						color: "red",
+						startDate: "2021/01/10",
+						endDate: "2021/01/31",
 					},
 					{
-						"name": "project",
-						"color": "green",
-						"startDate": 1611427494628,
-						"endDate": 1611427494628,
+						name: "project",
+						color: "green",
+						startDate: "2021/01/15",
+						endDate: "2021/01/23",
 					}
 				] 
 			}

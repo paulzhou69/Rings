@@ -23,6 +23,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
+import PersonalIcon from './PersonalIcon';
 
 function Copyright() {
   return (
@@ -147,9 +148,9 @@ export default function Dashboard() {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            {/* <Badge badgeContent={4} color="secondary"> */}
+              <PersonalIcon />
+            {/* </Badge> */}
           </IconButton>
         </Toolbar>
       </AppBar>

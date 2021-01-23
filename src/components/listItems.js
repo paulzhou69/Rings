@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,6 +9,34 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+
+// class Items extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       names: [
+//         "sean",
+//         "paul"
+//       ]
+//     }
+//   }
+
+//   map this.state.names to a bunch of 
+//   <ListItem button>
+//   <ListItemIcon>
+//     <DashboardIcon />
+//   </ListItemIcon>
+//   <ListItemText primary="Dashboard" />
+//   </ListItem>
+
+//   render() {
+//     return (
+//       <div>
+
+//       </div>
+//     )
+//   }
+// }
 
 export const mainListItems = (
   <div>

@@ -6,5 +6,5 @@ Track your and your friends' work!
 
 ```
 npm install
-npm run
+npm start
 ```

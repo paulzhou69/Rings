@@ -1,6 +1,6 @@
 # Rings
 
-Track you and your friends work! 
+Track your and your friends' work! 
 
 ### Dev
 

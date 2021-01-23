@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { useTheme } from '@material-ui/core/styles';
 import Title from './Title';
 import CircleProgressBar from '../view/CircleProgressBar';
+import { Grid } from "@material-ui/core";
 
 const database = [
   {
@@ -50,7 +51,17 @@ export default function Ring() {
   return (
     <React.Fragment>
       <Title>XXX's Rings</Title>
-      <CircleProgressBar percentage={75}/>
+      <Grid container spacing={3}>
+        <Grid item xs={4} md={4} lg={4}>
+          <CircleProgressBar percentage={75}/>
+        </Grid>
+        <Grid item xs={4} md={4} lg={4}>
+          <CircleProgressBar percentage={75}/>
+        </Grid>
+        <Grid item xs={4} md={4} lg={4}>
+          <CircleProgressBar percentage={75}/>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }

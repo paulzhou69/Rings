@@ -6,7 +6,8 @@ const circleConfig = {
   viewBox: '0 0 38 38',
   x: '19',
   y: '19',
-  radio: '15.91549430918954'
+  radio: '10'
+  // radio: '15.91549430918954'
 };
 
 const CircleProgressBarBase = ({
@@ -63,14 +64,14 @@ const CircleProgressBarBase = ({
           strokeDashoffset={INITIAL_OFFSET}
         />
 
-        <g className="chart-text">
+        {/* <g className="chart-text">
           <text x="50%" y="50%" className="chart-number">
             {progressBar}%
           </text>
           <text x="50%" y="50%" className="chart-label">
             {innerText}
           </text>
-        </g>
+        </g> */}
       </svg>
       {legendText && (
         <figcaption className="figure-key">

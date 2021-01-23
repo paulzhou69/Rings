@@ -6,7 +6,7 @@ const circleConfig = {
   viewBox: '0 0 38 38',
   x: '19',
   y: '19',
-  radio: '10'
+  radio: '17'
   // radio: '15.91549430918954'
 };
 

@@ -24,6 +24,7 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
 import PersonalIcon from './PersonalIcon';
+import Title from './Title'
 
 function Copyright() {
   return (
@@ -178,6 +179,8 @@ export default function Dashboard() {
             {/* Chart */}
             {/* <Grid item xs={12} md={8} lg={9}> */}
               {/* <Paper className={fixedHeightPaper}> */}
+              <Title>XXX's Rings</Title>
+                <Ring />
                 <Ring />
               {/* </Paper> */}
             {/* </Grid> */}

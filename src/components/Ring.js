@@ -44,13 +44,13 @@ function convToUnix(str) {
   return Math.round(new Date(str).getTime()/1000)
 }
 
-export default function Ring() {
+export default function Ring(props) {
   const theme = useTheme();
 
   return (
     <React.Fragment>
-      <Title>XXX's Rings</Title>
-      <CircleProgressBar percentage={75}/>
+      <Title>{props.circle}</Title>
+      <CircleProgressBar percentage={75} speed={50}/>
     </React.Fragment>
   );
 }

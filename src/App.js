@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Router>
         < Route exact path="/" component={Dashboard} />
+        < Route exact path="/user/:name" component={Dashboard} />
       </Router>
     </div>
   );

@@ -17,12 +17,20 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import GroupIcon from '@material-ui/icons/Group';
+import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+// import { mainListItems, secondaryListItems } from './listItems';
+import { database } from './database';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -118,7 +126,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -129,11 +138,110 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const history = useHistory();
+
+  const actualUser = "alex";
+
+  function handleClick(str) {
+    // console.log(str);
+    
+    if (str == "/") {
+      history.push("/user/" + actualUser);
+    } else {
+      history.push("/user" + str);
+    }
+  }
+
+  if (props.match.path == '/') {
+    history.push("/user/" + actualUser);
+  }
+
+  const user = props.match.params.name;
+  const userCircle = database.filter((obj) => obj["user"] == user)[0];
+
+  function renderGridItem(sth) {
+    return (
+        // <Grid item xs={12} md={8} lg={9}>
+        <Grid item xs={12} md={4}>
+          {/* <Paper className={fixedHeightPaper}> */}
+            {sth}
+            <br/>
+            {
+              props.match.params.name == actualUser
+              ? 
+              <div></div>
+              :
+              <button>Remind</button>
+            }
+          {/* </Paper> */}
+        </Grid>
+    )
+  }
+
+  const mainListItems = (
+    <div>
+      <ListItem button onClick={() => handleClick("/")}>
+        <ListItemIcon>
+          <DonutLargeIcon />
+        </ListItemIcon>
+        <ListItemText primary="your rings" />
+      </ListItem>
+      <ListItem button onClick={() => handleClick("/sean")}>
+        <ListItemIcon>
+          <DonutLargeIcon />
+        </ListItemIcon>
+        <ListItemText primary="sean" />
+      </ListItem>
+      <ListItem button onClick={() => handleClick("/paul")}>
+        <ListItemIcon>
+          <DonutLargeIcon />
+        </ListItemIcon>
+        <ListItemText primary="paul" />
+      </ListItem>
+      <ListItem button onClick={() => handleClick("/viola")}>
+        <ListItemIcon>
+          <DonutLargeIcon />
+        </ListItemIcon>
+        <ListItemText primary="viola" />
+      </ListItem>
+      <ListItem button onClick={() => handleClick("/ed")}>
+        <ListItemIcon>
+          <DonutLargeIcon />
+        </ListItemIcon>
+        <ListItemText primary="ed" />
+      </ListItem>
+    </div>
+  );
+  
+  const secondaryListItems = (
+    <div>
+      <ListSubheader inset>Groups</ListSubheader>
+      <ListItem button>
+        <ListItemIcon>
+          <GroupIcon />
+        </ListItemIcon>
+        <ListItemText primary="apma group" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <GroupIcon />
+        </ListItemIcon>
+        <ListItemText primary="cs group" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <GroupIcon />
+        </ListItemIcon>
+        <ListItemText primary="research group" />
+      </ListItem>
+    </div>
+  );
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar} >
           <IconButton
             edge="start"
             color="inherit"
@@ -143,9 +251,18 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
+          {
+            props.match.params.name == actualUser
+            ?
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              your rings
+            </Typography>
+            :
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            {props.match.params.name}'s rings 
+            </Typography> 
+          }
+          TODO: date and time goes here
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -174,26 +291,14 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Ring />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
+            {
+              userCircle.items.map((thing) => {
+                return renderGridItem(thing.circle);
+              })
+            }
           </Grid>
           <Box pt={4}>
+            {/* <button onClick={() => console.log(props)}>Click me</button> */}
             <Copyright />
           </Box>
         </Container>

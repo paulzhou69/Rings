@@ -14,8 +14,8 @@ const CircleProgressBarBase = ({
   className,
   strokeColor,
   strokeWidth,
-  innerText,
-  legendText,
+  // innerText,
+  // legendText,
   percentage,
   trailStrokeWidth,
   trailStrokeColor,
@@ -73,7 +73,7 @@ const CircleProgressBarBase = ({
           </text>
         </g> */}
       </svg>
-      {legendText && (
+      {/* {legendText && (
         <figcaption className="figure-key">
           <ul
             className="figure-key-list"
@@ -86,7 +86,7 @@ const CircleProgressBarBase = ({
             </li>
           </ul>
         </figcaption>
-      )}
+      )} */}
     </figure>
   );
 };
@@ -106,14 +106,14 @@ CircleProgressBarBase.propTypes = {
 
 CircleProgressBarBase.defaultProps = {
   strokeColor: 'blueviolet',
-  strokeWidth: 1,
+  strokeWidth: 2.5,
   innerText: 'Completed',
   legendText: '',
-  percentage: 0,
-  trailStrokeWidth: 1,
+  percentage: 75,
+  trailStrokeWidth: 2.5,
   trailStrokeColor: '#d2d3d4',
   trailSpaced: false,
-  speed: 1
+  speed: 2
 };
 
 export default CircleProgressBarBase;

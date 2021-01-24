@@ -176,7 +176,7 @@ export const database = [
     "group": "apma-group",
     "items": [
       {
-        circle: "sean",
+        circle: "alex",
         rings: [
           {
             name: "sean",
@@ -187,7 +187,7 @@ export const database = [
         ]
       },
       {
-        circle: "paul",
+        circle: "sean",
         rings: [
           {
             name: "paul",
@@ -198,7 +198,7 @@ export const database = [
         ]
       },
       {
-        circle: "ed",
+        circle: "paul",
         rings: [
           {
             name: "ed",
@@ -219,6 +219,23 @@ export const database = [
           },
         ]
       }
+    ],
+    "playlist": [
+      {
+        name: "feather",
+        artist: "peter mcisaac music",
+        album: "feather"
+      },
+      {
+        name: "red in the grey",
+        artist: "m∅",
+        album: "no mythologies to follow"
+      },
+      {
+        name: "new light",
+        artist: "john mayer",
+        album: "new light"
+      },
     ]
   },
 ]

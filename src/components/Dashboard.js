@@ -17,12 +17,14 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import GroupIcon from '@material-ui/icons/Group';
 import AddIcon from '@material-ui/icons/Add';
+import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import { mainListItems, secondaryListItems } from './listItems';
@@ -30,15 +32,17 @@ import { database } from './database';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import Ring from './Ring'
-import GroupRing from './GroupRing'
-import PersonalIcon from './PersonalIcon'
-import RingIcon1 from './svg'
-import RingIcon2 from './svg2'
-import RingIcon3 from './svg3'
-import RingIcon4 from './svg4'
-import RingIcon5 from './svg5'
+import Ring from './Ring';
+import GroupRing from './GroupRing';
+import AssignmentRing from './assignmentRing';
+import PersonalIcon from './PersonalIcon';
+import RingIcon1 from './svg';
+import RingIcon2 from './svg2';
+import RingIcon3 from './svg3';
+import RingIcon4 from './svg4';
+import RingIcon5 from './svg5';
 import { useHistory } from "react-router-dom";
+import { CenterFocusStrong, FilterNone } from '@material-ui/icons';
 
 function Copyright() {
   return (
@@ -144,6 +148,26 @@ const useStyles = makeStyles((theme) => ({
     width: 64, 
     height: 64,
     fill: "#C4C4C4"
+  },
+  add2: {
+    fill: "#C4C4C4"
+  },
+  mainPage: {
+    justifyContent: "space-around",
+    direction: "row",
+  },
+  mainPage2: {
+    direction: "row",
+  },
+  classLeft: {
+    direction: "column",
+  },
+  classRight: {
+    paddingLeft: "50px",
+  },
+  playlist: {
+    justifyContent: "center",
+    fontStyle: "italic"
   }
 }));
 
@@ -189,13 +213,19 @@ export default function Dashboard(props) {
   const group = props.match.params.name;
   const userCircle = database.filter((obj) => obj["user"] == user)[0];
   const groupCircle = database.filter((obj) => obj["group"] == group)[0];
+  const groupPlaylist = database.filter((obj) => obj["group"] == group)[0];
 
   function handleCircleClick(str) {
+    // console.log(userCircle["items"][0].circle);
     if (str == "/") {
-      history.push("/user/" + actualUser + "/" + userCircle["items"]["circle"])
+      history.push("/user/" + actualUser + "/" + userCircle["items"][0].circle)
     } else {
-      history.push("/user/" + str + "/" + userCircle["items"]["circle"])
+      history.push("/user/" + str + "/" + userCircle["items"][0].circle)
     }
+  }
+
+  function handlePlaylistClick(str) {
+    history.push("/group/" + str + "/" + "playlist")
   }
 
   const mainListItems = (
@@ -259,10 +289,10 @@ export default function Dashboard(props) {
 
   return (
     <div className={classes.root}>
-      <div style={{ height: "3%", width: "3%", 
+      {/* <div style={{ height: "3%", width: "3%", 
               position: "absolute", top: "80px", right: "25px", zIndex: -1 }}>
         <PersonalIcon style={{ position: "absolute" }}/>
-      </div>
+      </div> */}
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar} >
@@ -314,50 +344,193 @@ export default function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <br/>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className={classes.mainPage} >
             {
               props.match.path.split('/')[1] == 'user' 
               ?
-              userCircle.items.map((thing) => {
-                return (
-                  <Grid item xs={12} md={4}>
-                    <div onClick={() => handleCircleClick(user)}>
-                      <Ring
-                        circleName={thing.circle} 
-                        rings={thing.rings}
-                      />
-                    </div>
-                    {
-                      props.match.params.name == actualUser
-                      ? 
-                      <div></div>
-                      :
-                      <button 
-                        type="button" 
-                        class="btn btn-danger"
-                        style={{marginTop: 20 + "px"}}
-                        onClick={() => alert("successfully reminded " 
-                                        + user + 
-                                        " of their due")}
-                      >
-                          remind {user}
-                      </button>
-                    }
-                  </Grid>
-                )
-              })
+              props.match.path.split('/')[3] == undefined
+                ?
+                userCircle.items.map((thing) => {
+                  return (
+                    <Grid item xs={12} md={4}>
+                      <div onClick={() => handleCircleClick(user)}>
+                        <Ring
+                          circleName={thing.circle} 
+                          rings={thing.rings}
+                        />
+                      </div>
+                      {
+                        props.match.params.name == actualUser
+                        ? 
+                        <div></div>
+                        :
+                        <button 
+                          type="button" 
+                          class="btn btn-danger"
+                          style={{marginTop: 20 + "px"}}
+                          onClick={() => alert("successfully reminded " 
+                                          + user + 
+                                          " of their due")}
+                        >
+                            remind {user}
+                        </button>
+                      }
+                    </Grid>
+                  )})
+                :
+                <div >
+                  <Typography variant="h6">
+                    {userCircle["items"][0].circle}
+                  </Typography>
+                  <br /><br />
+                  <Grid>
+                  {
+                  props.match.params.name == actualUser
+                  ?
+                  <Grid container spacing={10}>
+                    {userCircle["items"][0].rings.map((thing) => {
+                    return (
+                      <Grid item spacing={6}>
+                        <AssignmentRing
+                          rings={thing}
+                        />
+                        <Typography >
+                          {thing.name}
+                        </Typography>
+                        <Typography>
+                          {thing.endDate}
+                        </Typography>
+                      </Grid>
+                    )
+                  })}
+                   <Grid className={classes.classRight}>
+                      <Grid style={{paddingBottom: '20px'}}>
+                        accessible to
+                        </Grid>
+                        <ListItem button onClick={() => handleClick("/sean")}>
+                        <ListItemIcon>
+                          <RingIcon2 />
+                        </ListItemIcon>
+                        <ListItemText primary="sean" />
+                      </ListItem>
+                      <ListItem button onClick={() => handleClick("/paul")}>
+                        <ListItemIcon>
+                          <RingIcon3 />
+                        </ListItemIcon>
+                        <ListItemText primary="paul" />
+                      </ListItem>
+                      <ListItem button onClick={() => handleClick("/viola")}>
+                        <ListItemIcon>
+                          <RingIcon4 />
+                        </ListItemIcon>
+                        <ListItemText primary="viola" />
+                      </ListItem>
+                      <ListItem button >
+                        <ListItemIcon>
+                          <AddIcon className={classes.add2}/>
+                        </ListItemIcon>
+                      </ListItem>
+                    </Grid>
+                </Grid>
+                :
+                <Grid container spacing={6} direction={"row"}>
+                    {userCircle["items"][0].rings.map((thing) => {
+                    return (
+                      <Grid item spacing={6}>
+                        <AssignmentRing
+                          rings={thing}
+                        />
+                        <Typography >
+                          {thing.name}
+                        </Typography>
+                        <Typography>
+                          {thing.endDate}
+                        </Typography>
+                        <Grid>
+                          <button 
+                            type="button" 
+                            class="btn btn-danger"
+                            style={{marginTop: 20 + "px"}}
+                            onClick={() => alert("successfully reminded " 
+                                            + user + 
+                                            " of their due")}
+                          >
+                              remind {user}
+                          </button>
+                        </Grid>
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+                }
+                </Grid>
+                </div>
               :
               // console.log(groupCircle)
               // <div>
               //   <button onClick={() => console.log(groupCircle)}>hi</button>
               // </div>
-              groupCircle.items.map((thing) => {
-                return (
-                  <Grid item xs={12} md={3}>
-                    <GroupRing circleName={thing.circle} rings={thing.rings} />
+              props.match.path.split('/')[3] == undefined
+                ?
+                <div>
+                    <Grid item container className={classes.playlist}
+                    onClick={()=>handlePlaylistClick(group)}>
+                    <IconButton color="#C4C4C4">
+                      <QueueMusicIcon />
+                    </IconButton>
+                    <Typography style={{paddingTop: 10,}}>
+                      playlist
+                    </Typography>
+                    </Grid>
+                    <br /><br />
+                    <Grid container className={classes.mainPage2} xs={12}>
+                      {
+                      groupCircle.items.map((thing) => {
+                      return (
+                        <Grid item >
+                          <GroupRing circleName={thing.circle} rings={thing.rings} />
+                        </Grid>
+                      )
+                      })}
+                    </Grid>
+                </div>
+                :
+                  <Grid container >
+                    <Grid item container className={classes.playlist}
+                    onClick={()=>handlePlaylistClick(group)}>
+                    <IconButton color="#C4C4C4">
+                      <QueueMusicIcon />
+                    </IconButton>
+                    <Typography style={{paddingTop: 10,}}>
+                      playlist
+                    </Typography>
+                    </Grid>
+                    <br /><br />
+                  <ListItem button >
+                        <ListItemIcon>
+                          <FavoriteIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="feather" secondary="peter mcisaac music - feather"/>
+                      </ListItem>
+                      <ListItem button >
+                        <ListItemIcon>
+                          <FavoriteIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="red in the grey" secondary="m∅ - no mythologies to follow"/>
+                      </ListItem>
+                      <ListItem button >
+                        <ListItemIcon>
+                          <FavoriteIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="new light" secondary="john mayer - new light"/>
+                      </ListItem>
+                      <ListItem button >
+                        <ListItemIcon>
+                          <AddIcon className={classes.add2}/>
+                        </ListItemIcon>
+                      </ListItem>
                   </Grid>
-                )
-              })
+                
             }
           </Grid>
           <Box pt={4}>

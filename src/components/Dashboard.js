@@ -180,8 +180,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+var numNotification = 0;
+
 export default function Dashboard(props) {
-  // var OnUser = true;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -329,7 +330,7 @@ export default function Dashboard(props) {
             </Typography> 
           }
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={4} color="secondary"> 
               <AccountCircleIcon />
             </Badge>
           </IconButton>
@@ -380,11 +381,12 @@ export default function Dashboard(props) {
                           type="button" 
                           class="btn btn-danger"
                           style={{marginTop: 20 + "px"}}
-                          onClick={() => alert("successfully reminded " 
+                          onClick={() => {alert("successfully reminded " 
                                           + user + 
-                                          " of their due")}
+                                          " of their due");
+                                        numNotification++;}}
                         >
-                            remind {user}
+                            ring {user}
                         </button>
                       }
                     </Grid>

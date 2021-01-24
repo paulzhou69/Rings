@@ -22,7 +22,7 @@ function calcProgress(startDate, endDate) {
   // const endTime = this.convToUnix(endDate);
   const startTime = Math.round(new Date(startDate).getTime()/1000);
   const endTime = Math.round(new Date(endDate).getTime()/1000);
-  return (currTime - startTime) / (endTime - startTime)
+  return (1 - (currTime - startTime) / (endTime - startTime))
 }
 
 export default function Ring(props) {

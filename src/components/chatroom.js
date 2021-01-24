@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './chatroom.css'
 import '../App.css'
-import RingIcon1 from './svg';
+import RingIcon1 from '../icons/svg';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 const Message = ({chat, user}) => (
   <Grid container style={{direction: 'row'}} className={`chat ${user === chat.username ? "right" : "left"}`}>
-  <RingIcon1 style={{paddingRight: 3}}/>
-  <li style={{borderRadius: 5, paddingLeft:5,paddingRight:5,paddingTop:2,paddingBottom:-6,background: '#E0E4E8'}}>
-      {chat.content}
-  </li>
+    <RingIcon1 style={{paddingRight: 3}}/>
+    <li style={{borderRadius: 5, paddingLeft:5,paddingRight:5,paddingTop:2,paddingBottom:-6,background: '#E0E4E8'}}>
+        {chat.content}
+    </li>
   </Grid>
 );
 
@@ -72,7 +72,7 @@ class Chatroom extends React.Component {
                 </ul>
                 <form className="input" onSubmit={(e) => this.submitMessage(e)}>
                     <input type="text" ref="msg" />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Send" />
                 </form>
             </div>
         );

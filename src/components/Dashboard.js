@@ -30,18 +30,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import { mainListItems, secondaryListItems } from './listItems';
 import { database } from './database';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
 import Ring from './Ring';
 import GroupRing from './GroupRing';
 import AssignmentRing from './assignmentRing';
 import PersonalIcon from './PersonalIcon';
-import RingIcon1 from './svg';
-import RingIcon2 from './svg2';
-import RingIcon3 from './svg3';
-import RingIcon4 from './svg4';
-import RingIcon5 from './svg5';
+import RingIcon1 from '../icons/svg';
+import RingIcon2 from '../icons/svg2';
+import RingIcon3 from '../icons/svg3';
+import RingIcon4 from '../icons/svg4';
+import RingIcon5 from '../icons/svg5';
 import { useHistory } from "react-router-dom";
 import { CenterFocusStrong, FilterNone } from '@material-ui/icons';
 import Chatroom from './chatroom'
@@ -401,16 +398,21 @@ export default function Dashboard(props) {
                   ?
                   <Grid container spacing={10}>
                     {userCircle["items"][0].rings.map((thing) => {
+                    const startDate = 'start: ' + thing.startDate.slice(5);
+                    const dueDate = 'due: ' + thing.endDate.slice(5);
                     return (
                       <Grid item spacing={6}>
                         <AssignmentRing
                           rings={thing}
                         />
                         <Typography >
-                          {thing.name}
+                          <b>{thing.name}</b>
                         </Typography>
                         <Typography>
-                          {thing.endDate}
+                          {startDate}
+                        </Typography>
+                        <Typography>
+                          {dueDate}
                         </Typography>
                       </Grid>
                     )
@@ -567,10 +569,17 @@ export default function Dashboard(props) {
             {/* <button onClick={() => console.log(props.match.path.split('/')[1])}>Click me</button> */}
             {/* <Copyright /> */}
           </Box>
-          <IconButton 
-            className={classes.addIcon} >
-              <AddIcon className={classes.add}/>
-          </IconButton>
+          {
+            props.match.path.split('/')[3] == 'chatroom' ||
+            props.match.path.split('/')[3] == 'playlist'
+            ?
+            <div></div>
+            :
+            <IconButton 
+              className={classes.addIcon} >
+                <AddIcon className={classes.add}/>
+            </IconButton>
+          }
         </Container>
       </main>
     </div>

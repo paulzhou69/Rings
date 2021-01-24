@@ -21,7 +21,7 @@ function calcProgress(startDate, endDate) {
   // const endTime = this.convToUnix(endDate);
   const startTime = Math.round(new Date(startDate).getTime()/1000);
   const endTime = Math.round(new Date(endDate).getTime()/1000);
-  return (currTime - startTime) / (endTime - startTime)
+  return (1 - (currTime - startTime) / (endTime - startTime))
 }
 
 export default function GroupRing(props) {
@@ -51,7 +51,7 @@ export default function GroupRing(props) {
            onClick={() => console.log(valueObj)}>
         <ActivityRings data={valueObj} config={activityConfig}/> 
       </div>
-      Score: {100 - Math.floor(valueObj[0].value * 100)}%
+      Score: {Math.floor(valueObj[0].value * 100)}%
     </React.Fragment>
   );
 }

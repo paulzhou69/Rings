@@ -30,6 +30,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
+import PersonalIcon from './PersonalIcon'
 import { useHistory } from "react-router-dom";
 
 function Copyright() {
@@ -37,7 +38,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Rings
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -262,11 +263,10 @@ export default function Dashboard(props) {
             {props.match.params.name}'s rings 
             </Typography> 
           }
-          TODO: date and time goes here
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            {/* <Badge badgeContent={4} color="secondary"> */}
+              <PersonalIcon />
+            {/* </Badge> */}
           </IconButton>
         </Toolbar>
       </AppBar>

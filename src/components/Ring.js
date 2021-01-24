@@ -29,14 +29,14 @@ export default function Ring(props) {
   })
 
   const activityConfig = {
-    width: 150,
-    height: 150
+    width: 300,
+    height: 300,
+    radius: 90,
+    ringSize: 20,
   }
 
   return (
     <React.Fragment>
-      {/* <Title>{props.circle}</Title> */}
-      {/* <CircleProgressBar percentage={75} speed={50}/> */}
       {circleName}
       <br/>
       <div style={{ display: "flex", justifyContent: "center" }}>

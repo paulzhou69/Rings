@@ -45,6 +45,7 @@ export default function Ring(props) {
 
   return (
     <React.Fragment>
+      <br/><br/>
       {circleName}
       <br/>
       <div style={{ display: "flex", justifyContent: "center" }}

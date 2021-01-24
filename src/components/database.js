@@ -173,7 +173,7 @@ export const database = [
     ]
   },
   {
-    "group": "apmagroup",
+    "group": "apma-group",
     "items": [
       {
         circle: "sean",

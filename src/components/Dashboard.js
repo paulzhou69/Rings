@@ -147,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-  var OnUser = true;
+  // var OnUser = true;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -163,7 +163,7 @@ export default function Dashboard(props) {
   const actualUser = "alex";
 
   function handleClick(str) {
-    OnUser = true;
+    // OnUser = true;
     // console.log(str);
     if (str == "/") {
         history.push("/user/" + actualUser);
@@ -174,7 +174,7 @@ export default function Dashboard(props) {
   }
 
   function handleGroupClick(str) {
-     OnUser = false;
+    //  OnUser = false;
      console.log(str);
      history.push("/group" + str);
      
@@ -227,23 +227,23 @@ export default function Dashboard(props) {
   const secondaryListItems = (
     <div>
       <ListSubheader inset>Groups</ListSubheader>
-      <ListItem button onClick={() => handleGroupClick("/apmagroup")}>
+      <ListItem button onClick={() => handleGroupClick("/apma-group")}>
         <ListItemIcon>
           <GroupIcon />
         </ListItemIcon>
-        <ListItemText primary="apma group" />
+        <ListItemText primary="apma-group" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <GroupIcon />
         </ListItemIcon>
-        <ListItemText primary="cs group" />
+        <ListItemText primary="cs-group" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <GroupIcon />
         </ListItemIcon>
-        <ListItemText primary="research group" />
+        <ListItemText primary="research-group" />
       </ListItem>
     </div>
   );
@@ -302,7 +302,7 @@ export default function Dashboard(props) {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {
-              OnUser == true 
+              props.match.path.split('/')[1] == 'user' 
               ?
               userCircle.items.map((thing) => {
                 return (
@@ -319,19 +319,22 @@ export default function Dashboard(props) {
                 )
               })
               :
-              console.log(groupCircle)
-              // groupCircle.items.map((thing) => {
-              //   return (
-              //     <Grid item xs={12} md={4}>
-              //       <GroupRing circleName={thing.circle} rings={thing.rings} />
-              //     </Grid>
-              //   )
-              // })
+              // console.log(groupCircle)
+              // <div>
+              //   <button onClick={() => console.log(groupCircle)}>hi</button>
+              // </div>
+              groupCircle.items.map((thing) => {
+                return (
+                  <Grid item xs={12} md={3}>
+                    <GroupRing circleName={thing.circle} rings={thing.rings} />
+                  </Grid>
+                )
+              })
             }
           </Grid>
           <Box pt={4}>
-            {/*<button onClick={() => console.log(group)}>Click me</button>*/}
-            <Copyright />
+            {/* <button onClick={() => console.log(props.match.path.split('/')[1])}>Click me</button> */}
+            {/* <Copyright /> */}
           </Box>
           <IconButton 
           className={classes.addIcon} >

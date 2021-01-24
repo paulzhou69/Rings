@@ -37,20 +37,21 @@ export default function GroupRing(props) {
   })
 
   const activityConfig = {
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
     radius: 50,
     ringSize: 18,
   }
 
   return (
     <React.Fragment>
+      <br/><br/>
       {circleName}
-      <br/>
-      <div style={{ display: "flex", justifyContent: "center", padding: 1 }}
-           onClick={() => console.log(props)}>
+      <div style={{ display: "flex", justifyContent: "center" }}
+           onClick={() => console.log(valueObj)}>
         <ActivityRings data={valueObj} config={activityConfig}/> 
       </div>
+      Score: {100 - Math.floor(valueObj[0].value * 100)}%
     </React.Fragment>
   );
 }

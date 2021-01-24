@@ -31,6 +31,8 @@ function App() {
           < Route exact path="/" component={Dashboard} />
           < Route exact path="/user/:name" component={Dashboard} />
           < Route exact path="/user/:name/:circle" component={Dashboard} />
+          < Route exact path="/group/:name" component={Dashboard} />
+
         </Router>
       </div>
     </MuiThemeProvider>

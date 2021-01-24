@@ -6,15 +6,16 @@ const circleConfig = {
   viewBox: '0 0 38 38',
   x: '19',
   y: '19',
-  radio: '15.91549430918954'
+  radio: '17'
+  // radio: '15.91549430918954'
 };
 
 const CircleProgressBarBase = ({
   className,
   strokeColor,
   strokeWidth,
-  innerText,
-  legendText,
+  // innerText,
+  // legendText,
   percentage,
   trailStrokeWidth,
   trailStrokeColor,
@@ -38,8 +39,8 @@ const CircleProgressBarBase = ({
   }, [progressBar]);
 
   return (
-    <figure className={className}>
-      <svg viewBox={circleConfig.viewBox}>
+    <figure className={className} zIndex={-1} position="relative">
+      <svg viewBox={circleConfig.viewBox} zIndex={-1} position="relative">
         <circle
           className="donut-ring"
           cx={circleConfig.x}
@@ -63,16 +64,16 @@ const CircleProgressBarBase = ({
           strokeDashoffset={INITIAL_OFFSET}
         />
 
-        <g className="chart-text">
+        {/* <g className="chart-text">
           <text x="50%" y="50%" className="chart-number">
             {progressBar}%
           </text>
           <text x="50%" y="50%" className="chart-label">
             {innerText}
           </text>
-        </g>
+        </g> */}
       </svg>
-      {legendText && (
+      {/* {legendText && (
         <figcaption className="figure-key">
           <ul
             className="figure-key-list"
@@ -85,7 +86,7 @@ const CircleProgressBarBase = ({
             </li>
           </ul>
         </figcaption>
-      )}
+      )} */}
     </figure>
   );
 };
@@ -105,14 +106,14 @@ CircleProgressBarBase.propTypes = {
 
 CircleProgressBarBase.defaultProps = {
   strokeColor: 'blueviolet',
-  strokeWidth: 1,
+  strokeWidth: 2.5,
   innerText: 'Completed',
   legendText: '',
-  percentage: 0,
-  trailStrokeWidth: 1,
+  percentage: 75,
+  trailStrokeWidth: 2.5,
   trailStrokeColor: '#d2d3d4',
   trailSpaced: false,
-  speed: 1
+  speed: 2
 };
 
 export default CircleProgressBarBase;

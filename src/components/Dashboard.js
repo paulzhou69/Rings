@@ -17,6 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ForumIcon from '@material-ui/icons/Forum';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -43,6 +44,7 @@ import RingIcon4 from './svg4';
 import RingIcon5 from './svg5';
 import { useHistory } from "react-router-dom";
 import { CenterFocusStrong, FilterNone } from '@material-ui/icons';
+import Chatroom from './chatroom'
 
 function Copyright() {
   return (
@@ -168,6 +170,13 @@ const useStyles = makeStyles((theme) => ({
   playlist: {
     justifyContent: "center",
     fontStyle: "italic"
+  },
+  groupTop: {
+    direction: "row",
+    justifyContent: "space-around",
+  },
+  chatroomWrap: {
+    paddingRight: 50,
   }
 }));
 
@@ -226,6 +235,9 @@ export default function Dashboard(props) {
 
   function handlePlaylistClick(str) {
     history.push("/group/" + str + "/" + "playlist")
+  }
+  function handleChatroomClick(str) {
+    history.push("/group/" + str + "/" + "chatroom")
   }
 
   const mainListItems = (
@@ -473,7 +485,8 @@ export default function Dashboard(props) {
               props.match.path.split('/')[3] == undefined
                 ?
                 <div>
-                    <Grid item container className={classes.playlist}
+                  <Grid container className={classes.groupTop}>
+                    <Grid item className={classes.playlist}
                     onClick={()=>handlePlaylistClick(group)}>
                     <IconButton color="#C4C4C4">
                       <QueueMusicIcon />
@@ -481,6 +494,16 @@ export default function Dashboard(props) {
                     <Typography style={{paddingTop: 10,}}>
                       playlist
                     </Typography>
+                    </Grid>
+                    <Grid item className={classes.playlist}
+                    onClick={()=>handleChatroomClick(group)}>
+                    <IconButton color="#C4C4C4">
+                      <ForumIcon />
+                    </IconButton>
+                    <Typography style={{paddingTop: 10,}}>
+                      chatroom
+                    </Typography>
+                    </Grid>
                     </Grid>
                     <br /><br />
                     <Grid container className={classes.mainPage2} xs={12}>
@@ -495,6 +518,8 @@ export default function Dashboard(props) {
                     </Grid>
                 </div>
                 :
+                props.match.path.split('/')[3] == 'playlist'
+                  ?
                   <Grid container >
                     <Grid item container className={classes.playlist}
                     onClick={()=>handlePlaylistClick(group)}>
@@ -530,7 +555,12 @@ export default function Dashboard(props) {
                         </ListItemIcon>
                       </ListItem>
                   </Grid>
-                
+                  :
+                  
+                  <div className={classes.chatroomWrap}>
+                    {/* <button onClick={() => console.log(props.match.path.split('/')[3])}>Click me</button> */}
+                    <Chatroom />
+                  </div>
             }
           </Grid>
           <Box pt={4}>

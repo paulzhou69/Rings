@@ -1,0 +1,75 @@
+.chatroom {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.chatroom h4 {
+  color: '#C4C4C4';
+}
+
+.chatroom .chats {
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin: 10px 0 0;
+  height: 510px;
+  overflow-y: scroll;
+}
+
+.chatroom .chats .chat {
+  background: rgba(216, 218, 219, 0.993);
+  position: relative;
+  padding: 5px 13px;
+  font-size: 14px;
+  border-radius: 10px;
+  list-style: none;
+  float: left;
+  clear: both;
+  margin: 10px 0;
+  max-width: 200px;
+}
+
+.chatroom .chats .chat img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: 0px;
+}
+
+.chatroom .chats .chat.right {
+  float: right;
+  clear: both;
+}
+
+.chatroom .input {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.chatroom .input input[type="text"] {
+  background: rgba(255, 255, 255, 0.5);
+  outline: 0;
+  padding: 0 5px;
+  margin-left: 10px;
+  border: 1px solid #e0e0e0;
+  height: 30px;
+  width: 550px;
+  font-size: 14px;
+}
+
+.chatroom .input input[type="submit"] {
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  height: 30px;
+  width: 70px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}

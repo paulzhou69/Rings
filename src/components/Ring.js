@@ -31,8 +31,8 @@ export default function Ring(props) {
   const activityConfig = {
     width: 300,
     height: 300,
-    radius: 90,
-    ringSize: 20,
+    radius: 120,
+    ringSize: 14,
   }
 
   return (

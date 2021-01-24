@@ -160,25 +160,6 @@ export default function Dashboard(props) {
   const user = props.match.params.name;
   const userCircle = database.filter((obj) => obj["user"] == user)[0];
 
-  function renderGridItem(sth) {
-    return (
-        // <Grid item xs={12} md={8} lg={9}>
-        <Grid item xs={12} md={4}>
-          {/* <Paper className={fixedHeightPaper}> */}
-            {sth}
-            <br/>
-            {
-              props.match.params.name == actualUser
-              ? 
-              <div></div>
-              :
-              <button>Remind</button>
-            }
-          {/* </Paper> */}
-        </Grid>
-    )
-  }
-
   const mainListItems = (
     <div>
       <ListItem button onClick={() => handleClick("/")}>
@@ -293,10 +274,16 @@ export default function Dashboard(props) {
           <Grid container spacing={3}>
             {
               userCircle.items.map((thing) => {
-                // return renderGridItem(thing.circle);
                 return (
                   <Grid item xs={12} md={4}>
-                   <Ring circleName={thing.circle} rings={thing.rings} />
+                    <Ring circleName={thing.circle} rings={thing.rings} />
+                    {
+                      props.match.params.name == actualUser
+                      ? 
+                      <div></div>
+                      :
+                      <button>Remind</button>
+                    }
                   </Grid>
                 )
               })

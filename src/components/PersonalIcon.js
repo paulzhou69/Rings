@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import Title from './Title';
+import CircleProgressBar from '../view/CircleProgressBar'
 
 const state = {
 	database: [
@@ -112,8 +113,7 @@ export default function PersonalIcon() {
 
 	return (
 		<React.Fragment>
-			{/* <Title>XXX's PersonalIcon</Title> */}
-			[Personal Icon] 
+			<CircleProgressBar z-index={-1} position="relative" />
 		</React.Fragment>
 	);
 }

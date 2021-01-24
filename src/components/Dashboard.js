@@ -24,6 +24,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import GroupIcon from '@material-ui/icons/Group';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import { mainListItems, secondaryListItems } from './listItems';
 import { database } from './database';
 import Chart from './Chart';
@@ -222,8 +223,10 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar} >
+      <AppBar position="absolute" 
+              style={{zIndex:1}}
+              className={clsx(classes.appBar, open && classes.appBarShift)}>
+        <Toolbar className={classes.toolbar} style={{zIndex:1}}>
           <IconButton
             edge="start"
             color="inherit"
@@ -245,9 +248,10 @@ export default function Dashboard(props) {
             </Typography> 
           }
           <IconButton color="inherit">
-            {/* <Badge badgeContent={4} color="secondary"> */}
-              <PersonalIcon />
-            {/* </Badge> */}
+            <Badge badgeContent={4} color="secondary">
+              <AccountCircleIcon />
+              {/* <PersonalIcon style={{zIndex:-1, position:"fixed"}} /> */}
+            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>

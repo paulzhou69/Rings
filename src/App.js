@@ -30,7 +30,10 @@ function App() {
         <Router>
           < Route exact path="/" component={Dashboard} />
           < Route exact path="/user/:name" component={Dashboard} />
+          < Route exact path="/user/:name/:circle" component={Dashboard} />
           < Route exact path="/group/:name" component={Dashboard} />
+          < Route exact path="/group/:name/playlist" component={Dashboard} />
+          < Route exact path="/group/:name/chatroom" component={Dashboard} />
         </Router>
       </div>
     </MuiThemeProvider>

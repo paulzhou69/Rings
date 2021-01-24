@@ -113,7 +113,8 @@ export default function PersonalIcon() {
 
 	return (
 		<React.Fragment>
-			<CircleProgressBar z-index={-1} position="relative" />
+			{/* <CircleProgressBar z-index={-1} position="relative" /> */}
+      <CircleProgressBar position="absolute"/>
 		</React.Fragment>
 	);
 }

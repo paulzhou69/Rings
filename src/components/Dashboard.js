@@ -240,11 +240,13 @@ export default function Dashboard(props) {
 
   return (
     <div className={classes.root}>
+      <div style={{ height: "3%", width: "3%", 
+              position: "absolute", top: "80px", right: "25px", zIndex: -1 }}>
+        <PersonalIcon style={{ position: "absolute" }}/>
+      </div>
       <CssBaseline />
-      <AppBar position="absolute" 
-              style={{zIndex:1}}
-              className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar} style={{zIndex:1}}>
+      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+        <Toolbar className={classes.toolbar} >
           <IconButton
             edge="start"
             color="inherit"
@@ -268,7 +270,6 @@ export default function Dashboard(props) {
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <AccountCircleIcon />
-              {/* <PersonalIcon style={{zIndex:-1, position:"fixed"}} /> */}
             </Badge>
           </IconButton>
         </Toolbar>
@@ -305,16 +306,7 @@ export default function Dashboard(props) {
                       ? 
                       <div></div>
                       :
-                      <button 
-                        type="button" 
-                        class="btn btn-danger"
-                        style={{marginTop: 20 + "px"}}
-                        onClick={() => alert("successfully reminded " 
-                                        + actualUser + 
-                                        " of their due")}
-                      >
-                          remind {actualUser}
-                      </button>
+                      <button>Remind</button>
                     }
                   </Grid>
                 )
@@ -326,7 +318,7 @@ export default function Dashboard(props) {
             <Copyright />
           </Box>
           <IconButton 
-          className={classes.addIcon} >
+            className={classes.addIcon} >
               <AddIcon className={classes.add}/>
           </IconButton>
         </Container>

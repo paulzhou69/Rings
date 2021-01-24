@@ -24,6 +24,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import GroupIcon from '@material-ui/icons/Group';
 import AddIcon from '@material-ui/icons/Add';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import { mainListItems, secondaryListItems } from './listItems';
 import { database } from './database';
 import Chart from './Chart';
@@ -250,6 +251,10 @@ export default function Dashboard(props) {
 
   return (
     <div className={classes.root}>
+      <div style={{ height: "3%", width: "3%", 
+              position: "absolute", top: "80px", right: "25px", zIndex: -1 }}>
+        <PersonalIcon style={{ position: "absolute" }}/>
+      </div>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar} >
@@ -274,9 +279,9 @@ export default function Dashboard(props) {
             </Typography> 
           }
           <IconButton color="inherit">
-            {/* <Badge badgeContent={4} color="secondary"> */}
-              <PersonalIcon />
-            {/* </Badge> */}
+            <Badge badgeContent={4} color="secondary">
+              <AccountCircleIcon />
+            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -300,6 +305,7 @@ export default function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          <br/>
           <Grid container spacing={3}>
             {
               props.match.path.split('/')[1] == 'user' 
@@ -313,7 +319,16 @@ export default function Dashboard(props) {
                       ? 
                       <div></div>
                       :
-                      <button>Remind</button>
+                      <button 
+                        type="button" 
+                        class="btn btn-danger"
+                        style={{marginTop: 20 + "px"}}
+                        onClick={() => alert("successfully reminded " 
+                                        + user + 
+                                        " of their due")}
+                      >
+                          remind {user}
+                      </button>
                     }
                   </Grid>
                 )
@@ -337,7 +352,7 @@ export default function Dashboard(props) {
             {/* <Copyright /> */}
           </Box>
           <IconButton 
-          className={classes.addIcon} >
+            className={classes.addIcon} >
               <AddIcon className={classes.add}/>
           </IconButton>
         </Container>

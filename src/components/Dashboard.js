@@ -293,7 +293,12 @@ export default function Dashboard(props) {
           <Grid container spacing={3}>
             {
               userCircle.items.map((thing) => {
-                return renderGridItem(thing.circle);
+                // return renderGridItem(thing.circle);
+                return (
+                  <Grid item xs={12} md={4}>
+                   <Ring circleName={thing.circle} rings={thing.rings} />
+                  </Grid>
+                )
               })
             }
           </Grid>

@@ -2,26 +2,7 @@ import React, { Component } from "react";
 import { useTheme } from '@material-ui/core/styles';
 import Title from './Title';
 import CircleProgressBar from '../view/CircleProgressBar';
-
-const database = [
-  {
-    circle: "cs0320",
-    rings: [
-      {
-        name: "lab",
-        color: "red",
-        startDate: "2021/01/21",
-        endDate: "2021/01/27"
-      },
-      {
-        name: "project",
-        color: "green",
-        startDate: "2021/01/21",
-        endDate: "2021/01/28"
-      }
-    ]
-  }
-]
+import ActivityRings, {ActivityRingsConfig, ActivityRingsData} from "react-activity-rings";
 
 /**
  * Calculates the progress percentage
@@ -29,28 +10,38 @@ const database = [
  * @param {String} endDate 
  */
 function calcProgress(startDate, endDate) {
-  const currTime = Date.now();
-  const startTime = this.convToUnix(startDate);
-  const endTime = this.convToUnix(endDate);
+  const currTime = Date.now() / 1000;
+  // const startTime = this.convToUnix(startDate);
+  // const endTime = this.convToUnix(endDate);
+  const startTime = Math.round(new Date(startDate).getTime()/1000);
+  const endTime = Math.round(new Date(endDate).getTime()/1000);
   return (currTime - startTime) / (endTime - startTime)
-}
-
-/**
- * Converts a formatted string to unix timestamp
- * @param {String} str format: "YYYY/MM/DD", example: "2013/09/05"
- * Note that the date will be in this format from some date plugin 
- */
-function convToUnix(str) {
-  return Math.round(new Date(str).getTime()/1000)
 }
 
 export default function Ring(props) {
   const theme = useTheme();
+  console.log(props);
+  const circleName = props.circleName;
+  const rings = props.rings;
+  // console.log(rings);
+  const valueObj = rings.map(ring => {
+    return { value: calcProgress(ring.startDate, ring.endDate) };
+  })
+
+  const activityConfig = {
+    width: 150,
+    height: 150
+  }
 
   return (
     <React.Fragment>
-      <Title>{props.circle}</Title>
-      <CircleProgressBar percentage={75} speed={50}/>
+      {/* <Title>{props.circle}</Title> */}
+      {/* <CircleProgressBar percentage={75} speed={50}/> */}
+      {circleName}
+      <br/>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ActivityRings data={valueObj} config={activityConfig}/> 
+      </div>
     </React.Fragment>
   );
 }

@@ -178,6 +178,14 @@ export default function Dashboard(props) {
   const user = props.match.params.name;
   const userCircle = database.filter((obj) => obj["user"] == user)[0];
 
+  function handleCircleClick(str) {
+    if (str == "/") {
+      history.push("/user/" + actualUser + "/" + userCircle["items"]["circle"])
+    } else {
+      history.push("/user/" + str + "/" + userCircle["items"]["circle"])
+    }
+  }
+
   const mainListItems = (
     <div>
       <ListItem button onClick={() => handleClick("/")}>
@@ -295,7 +303,12 @@ export default function Dashboard(props) {
               userCircle.items.map((thing) => {
                 return (
                   <Grid item xs={12} md={4}>
-                    <Ring circleName={thing.circle} rings={thing.rings} />
+                    <div onClick={() => handleCircleClick(user)}>
+                      <Ring
+                        circleName={thing.circle} 
+                        rings={thing.rings}
+                      />
+                    </div>
                     {
                       props.match.params.name == actualUser
                       ? 

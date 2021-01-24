@@ -31,6 +31,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
+import GroupRing from './GroupRing'
 import PersonalIcon from './PersonalIcon'
 import RingIcon1 from './svg'
 import RingIcon2 from './svg2'
@@ -147,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-
+  // var OnUser = true;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -163,13 +164,21 @@ export default function Dashboard(props) {
   const actualUser = "alex";
 
   function handleClick(str) {
+    // OnUser = true;
     // console.log(str);
-    
     if (str == "/") {
-      history.push("/user/" + actualUser);
+        history.push("/user/" + actualUser);
     } else {
       history.push("/user" + str);
-    }
+    };
+    
+  }
+
+  function handleGroupClick(str) {
+    //  OnUser = false;
+     console.log(str);
+     history.push("/group" + str);
+     
   }
 
   if (props.match.path == '/') {
@@ -177,7 +186,9 @@ export default function Dashboard(props) {
   }
 
   const user = props.match.params.name;
+  const group = props.match.params.name;
   const userCircle = database.filter((obj) => obj["user"] == user)[0];
+  const groupCircle = database.filter((obj) => obj["group"] == group)[0];
 
   const mainListItems = (
     <div>
@@ -217,23 +228,23 @@ export default function Dashboard(props) {
   const secondaryListItems = (
     <div>
       <ListSubheader inset>Groups</ListSubheader>
-      <ListItem button>
+      <ListItem button onClick={() => handleGroupClick("/apma-group")}>
         <ListItemIcon>
           <GroupIcon />
         </ListItemIcon>
-        <ListItemText primary="apma group" />
+        <ListItemText primary="apma-group" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <GroupIcon />
         </ListItemIcon>
-        <ListItemText primary="cs group" />
+        <ListItemText primary="cs-group" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <GroupIcon />
         </ListItemIcon>
-        <ListItemText primary="research group" />
+        <ListItemText primary="research-group" />
       </ListItem>
     </div>
   );
@@ -297,6 +308,8 @@ export default function Dashboard(props) {
           <br/>
           <Grid container spacing={3}>
             {
+              props.match.path.split('/')[1] == 'user' 
+              ?
               userCircle.items.map((thing) => {
                 return (
                   <Grid item xs={12} md={4}>
@@ -320,11 +333,23 @@ export default function Dashboard(props) {
                   </Grid>
                 )
               })
+              :
+              // console.log(groupCircle)
+              // <div>
+              //   <button onClick={() => console.log(groupCircle)}>hi</button>
+              // </div>
+              groupCircle.items.map((thing) => {
+                return (
+                  <Grid item xs={12} md={3}>
+                    <GroupRing circleName={thing.circle} rings={thing.rings} />
+                  </Grid>
+                )
+              })
             }
           </Grid>
           <Box pt={4}>
-            {/* <button onClick={() => console.log(props)}>Click me</button> */}
-            <Copyright />
+            {/* <button onClick={() => console.log(props.match.path.split('/')[1])}>Click me</button> */}
+            {/* <Copyright /> */}
           </Box>
           <IconButton 
             className={classes.addIcon} >

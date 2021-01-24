@@ -9,6 +9,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { CheckBox } from "@material-ui/icons";
+import Typography from '@material-ui/core/Typography';
 
 /**
  * Calculates the progress percentage
@@ -45,7 +46,9 @@ export default function Ring(props) {
 
   return (
     <React.Fragment>
-      {circleName}
+      <Typography variant="h6">
+        {circleName}
+      </Typography>
       <br/>
       <div style={{ display: "flex", justifyContent: "center" }}
            onClick={() => console.log(props)}>

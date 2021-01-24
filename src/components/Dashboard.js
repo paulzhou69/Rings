@@ -271,6 +271,7 @@ export default function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          <br/>
           <Grid container spacing={3}>
             {
               userCircle.items.map((thing) => {

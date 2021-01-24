@@ -22,7 +22,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import GroupIcon from '@material-ui/icons/Group';
-import DonutLargeIcon from '@material-ui/icons/DonutLarge';
+import AddIcon from '@material-ui/icons/Add';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 // import { mainListItems, secondaryListItems } from './listItems';
 import { database } from './database';
@@ -31,7 +31,11 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
 import PersonalIcon from './PersonalIcon'
-import logo from './svg'
+import RingIcon1 from './svg'
+import RingIcon2 from './svg2'
+import RingIcon3 from './svg3'
+import RingIcon4 from './svg4'
+import RingIcon5 from './svg5'
 import { useHistory } from "react-router-dom";
 
 function Copyright() {
@@ -126,6 +130,19 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  addIcon: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    width: 64, 
+    height: 64,
+
+  },
+  add: {
+    width: 64, 
+    height: 64,
+    fill: "#C4C4C4"
+  }
 }));
 
 export default function Dashboard(props) {
@@ -165,31 +182,31 @@ export default function Dashboard(props) {
     <div>
       <ListItem button onClick={() => handleClick("/")}>
         <ListItemIcon>
-          <DonutLargeIcon />
+          <RingIcon1 />
         </ListItemIcon>
         <ListItemText primary="your rings" />
       </ListItem>
       <ListItem button onClick={() => handleClick("/sean")}>
         <ListItemIcon>
-          <DonutLargeIcon />
+          <RingIcon2 />
         </ListItemIcon>
         <ListItemText primary="sean" />
       </ListItem>
       <ListItem button onClick={() => handleClick("/paul")}>
         <ListItemIcon>
-          <DonutLargeIcon />
+          <RingIcon3 />
         </ListItemIcon>
         <ListItemText primary="paul" />
       </ListItem>
       <ListItem button onClick={() => handleClick("/viola")}>
         <ListItemIcon>
-          <DonutLargeIcon />
+          <RingIcon4 />
         </ListItemIcon>
         <ListItemText primary="viola" />
       </ListItem>
       <ListItem button onClick={() => handleClick("/ed")}>
         <ListItemIcon>
-          <DonutLargeIcon />
+          <RingIcon5 />
         </ListItemIcon>
         <ListItemText primary="ed" />
       </ListItem>
@@ -294,6 +311,10 @@ export default function Dashboard(props) {
             {/* <button onClick={() => console.log(props)}>Click me</button> */}
             <Copyright />
           </Box>
+          <IconButton 
+          className={classes.addIcon} >
+              <AddIcon className={classes.add}/>
+          </IconButton>
         </Container>
       </main>
     </div>

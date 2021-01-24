@@ -22,8 +22,8 @@ Our app, Rings, presents all your tasks in an easy-to-view visualization with ri
 ### chat with each other using the chat function
 ![chat with each other using the chat function](assets/chat.png)
 
-### vive to the same mood with your group
-![vive to the same mood with your group](assets/playlist.png)
+### vibe to the same mood with your group
+![vibe to the same mood with your group](assets/playlist.png)
 
 ## Usage
 to lauch the app on your localhost:

@@ -31,6 +31,7 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import Ring from './Ring'
 import PersonalIcon from './PersonalIcon'
+import logo from './svg'
 import { useHistory } from "react-router-dom";
 
 function Copyright() {

@@ -16,6 +16,9 @@ const theme = createMuiTheme(
         main: deepOrange[100]
       },
     },
+    typography: {
+      fontFamily: "Raleway"
+    }
   }
 );
 

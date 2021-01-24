@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 const Message = ({chat, user}) => (
-  <Grid container style={{direction: 'row'}}>
+  <Grid container style={{direction: 'row'}} className={`chat ${user === chat.username ? "right" : "left"}`}>
   <RingIcon1 style={{paddingRight: 3}}/>
-  <li className={`chat ${user === chat.username ? "right" : "left"}`}>
+  <li style={{borderRadius: 5, paddingLeft:5,paddingRight:5,paddingTop:2,paddingBottom:-6,background: '#E0E4E8'}}>
       {chat.content}
   </li>
   </Grid>
@@ -24,8 +24,7 @@ class Chatroom extends React.Component {
                 content: <p>hi</p>,
             }, {
                 username: "paul",
-                content: <p>wow we have a chatroom</p>,
-                img: "http://i.imgur.com/Tj5DGiO.jpg",
+                content: <p>wow</p>,
             }]
         };
 
@@ -51,7 +50,6 @@ class Chatroom extends React.Component {
             chats: this.state.chats.concat([{
                 username: "alex",
                 content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
-                img: "http://i.imgur.com/Tj5DGiO.jpg",
             }])
         }, () => {
             ReactDOM.findDOMNode(this.refs.msg).value = "";

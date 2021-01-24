@@ -306,7 +306,16 @@ export default function Dashboard(props) {
                       ? 
                       <div></div>
                       :
-                      <button>Remind</button>
+                      <button 
+                        type="button" 
+                        class="btn btn-danger"
+                        style={{marginTop: 20 + "px"}}
+                        onClick={() => alert("successfully reminded " 
+                                        + user + 
+                                        " of their due")}
+                      >
+                          remind {user}
+                      </button>
                     }
                   </Grid>
                 )
